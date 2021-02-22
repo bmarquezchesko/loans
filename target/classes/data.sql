@@ -23,4 +23,15 @@ INSERT INTO users (first_name, last_name, email) VALUES
 INSERT INTO loans (total, user_id) VALUES
 (2500, 1),
 (1500, 1),
-(1000, 2);
+(1000, 1),
+(3000, 1),
+(5000, 1),
+(7000, 1),
+(10000, 1),
+(1000, 2),
+(1500, 2),
+(2000, 2),
+(2500, 2),
+(500, 3),
+(700, 3),
+(1000, 3);
