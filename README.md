@@ -26,6 +26,8 @@ User Name: sa
 Password: password
 ```
 
+![Schema Database](https://github.com/bmarquezchesko/loans/blob/main/src/main/resources/files/H2%20DB.png)
+
 ## Uso de la API
 
 ### Consultar un usuario por ID
