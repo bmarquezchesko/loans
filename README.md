@@ -11,18 +11,18 @@ Pre-requisitos:
     Maven
     Java JDK 1.8
 
-##Configure su proyecto
+## Configure su proyecto
 Luego de clonar el repositorio desde Github, sitúese en el directorio root del proyecto 
 y ejecute el siguiente comando desde la consola `mvn clean install` para poder buildear el proyecto y descargar todas sus dependencias.
 A continuación, puede ejecutar la aplicación con el comando `mvn spring-boot:run` y disfrute ;)
 
-##Uso de la API
+## Uso de la API
 
-###Consultar un usuario por ID
+### Consultar un usuario por ID
 
 `GET` http://localhost:8080/users/**id**
 
-#####Success Response
+##### Response
 **Status**: `200 OK`
 ```json
 {
@@ -39,7 +39,7 @@ A continuación, puede ejecutar la aplicación con el comando `mvn spring-boot:r
     ]
 }
 ```
-####Error Response Format
+#### Error Response Format
 **Status**: `404 Not Found`
 ```json
 {
@@ -49,7 +49,7 @@ A continuación, puede ejecutar la aplicación con el comando `mvn spring-boot:r
 }
 ```
 
-###Crear un usuario nuevo
+### Crear un usuario nuevo
 **IMPORTANT:** En la creación de un usuario no se puede dar de alta nuevos préstamos (**loans**), 
 los préstamos solamente son válidos para usuarios pre-existentes.
 
@@ -64,7 +64,7 @@ los préstamos solamente son válidos para usuarios pre-existentes.
 }
 ```
 
-#####Success Response
+#### Success Response
 **Status**: `200 OK`
 ```json
 {
@@ -75,7 +75,7 @@ los préstamos solamente son válidos para usuarios pre-existentes.
   "loans": []
 }
 ```
-####Error Response Format
+#### Error Response Format
 **IMPORTANT:** 
 Para la creación de un usuario los campos **"firstName"**, **"lastName"** and **"email"** son obligatorios.
 
@@ -90,16 +90,16 @@ Para la creación de un usuario los campos **"firstName"**, **"lastName"** and *
 }
 ```
 
-###Eliminar un usuario
+### Eliminar un usuario
 
 `DELETE` http://localhost:8080/users/**id**
 
-####Success Response
+#### Success Response
 **Status**: `200 OK`
 ```
 User deleted successfully!
 ```
-####Error Response Format
+#### Error Response Format
 
 **Status**: `404 Not Found`
 ```json
@@ -110,7 +110,7 @@ User deleted successfully!
 }
 ```
 
-###Consulta de Préstamos 
+### Consulta de Préstamos 
 
 Se puede consultar por todos los prestamos existentes por medio de una búsqueda páginada, 
 indicando obligatoriamente el tamaño de resultados en una página (**size**) y el número de la página a consultar (**page**).
