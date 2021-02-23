@@ -18,6 +18,8 @@ public class DefaultUserService implements UserService {
     }
 
     public User createUser(User user){
+
+        //TODO: Validar si es un usuario ya existente en la BD y restringir la creación de LOANS
         return userRepository.save(user);
     }
 
