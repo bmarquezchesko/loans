@@ -2,29 +2,29 @@ package com.example.loans.response;
 
 public class Paging {
 
-    private Long page;
-    private Long size;
+    private Integer page;
+    private Integer size;
     private Long total;
 
-    public Paging(Long page, Long size, Long total) {
+    public Paging(Integer page, Integer size, Long total) {
         this.page = page;
         this.size = size;
         this.total = total;
     }
 
-    public Long getPage() {
+    public Integer getPage() {
         return page;
     }
 
-    public void setPage(Long page) {
+    public void setPage(Integer page) {
         this.page = page;
     }
 
-    public Long getSize() {
+    public Integer getSize() {
         return size;
     }
 
-    public void setSize(Long size) {
+    public void setSize(Integer size) {
         this.size = size;
     }
 

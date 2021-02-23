@@ -5,6 +5,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "loans")
@@ -45,5 +46,27 @@ public class Loan {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Loan loan = (Loan) o;
+        return Objects.equals(id, loan.id) && Objects.equals(total, loan.total) && Objects.equals(user, loan.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, total, user);
+    }
+
+    @Override
+    public String toString() {
+        return "Loan{" +
+                "id=" + id +
+                ", total=" + total +
+                ", user=" + user +
+                '}';
     }
 }

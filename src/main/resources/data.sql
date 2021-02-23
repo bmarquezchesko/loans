@@ -18,7 +18,8 @@ CREATE TABLE loans (
 INSERT INTO users (first_name, last_name, email) VALUES
 ('Lucas', 'Lopez', 'lucaslopez@gmail.com'),
 ('Federico', 'Gomez', 'federicogomez@gmail.com'),
-('Leandro', 'Sanchez', 'leandrosanchez@gmail.com');
+('Leandro', 'Sanchez', 'leandrosanchez@gmail.com'),
+('Luciano', 'Perez', 'lucianoperez@gmail.com');
 
 INSERT INTO loans (total, user_id) VALUES
 (2500, 1),
@@ -32,6 +33,6 @@ INSERT INTO loans (total, user_id) VALUES
 (1500, 2),
 (2000, 2),
 (2500, 2),
-(500, 3),
+(3000, 2),
 (700, 3),
 (1000, 3);
