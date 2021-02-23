@@ -20,7 +20,7 @@ A continuación, puede ejecutar la aplicación con el comando `mvn spring-boot:r
 
 ### Consultar un usuario por ID
 
-`GET` http://localhost:8080/users/**id**
+`GET` http://<i></i>localhost:8080/users/**id**
 
 ##### Response
 **Status**: `200 OK`
@@ -53,7 +53,7 @@ A continuación, puede ejecutar la aplicación con el comando `mvn spring-boot:r
 **IMPORTANT:** En la creación de un usuario no se puede dar de alta nuevos préstamos (**loans**), 
 los préstamos solamente son válidos para usuarios pre-existentes.
 
-`POST` http://localhost:8080/users
+`POST` http://<i></i>localhost:8080/users
 
 `BODY`
 ```json
@@ -92,7 +92,7 @@ Para la creación de un usuario los campos **"firstName"**, **"lastName"** and *
 
 ### Eliminar un usuario
 
-`DELETE` http://localhost:8080/users/**id**
+`DELETE` http://<i></i>localhost:8080/users/**id**
 
 #### Success Response
 **Status**: `200 OK`
@@ -119,11 +119,11 @@ Opcionalmente, se puede realizar una búsqueda filtrando por id de usuario (**us
 Búsqueda páginada de todos los préstamos solicitando la primer página (índice 1 es la primera)
 y la cantidad de resultados a mostrar por página:
 
-`GET` http://localhost:8080/loans?**page**=1&**size**=5
+`GET` http://<i></i>localhost:8080/loans?**page**=1&**size**=5
 
 Opcional: Búsqueda páginada de los prestamos filtrando por id de usuario (**user_id**):
 
-`GET` http://localhost:8080/loans?**page**=1&**size**=5&**user_id**=3
+`GET` http://<i></i>localhost:8080/loans?**page**=1&**size**=5&**user_id**=3
 
 
 
