@@ -8,12 +8,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolationException;
 import java.util.HashMap;
 import java.util.List;
@@ -25,7 +25,7 @@ public class ControllerExceptionHandler {
     private static final Logger LOGGER = LoggerFactory.getLogger(ControllerExceptionHandler.class);
 
     @ExceptionHandler(value = {UserNotFoundException.class})
-    public ResponseEntity<ApiError> userNotFoundException(HttpServletRequest req, UserNotFoundException ex) {
+    public ResponseEntity<ApiError> userNotFoundException(UserNotFoundException ex) {
         LOGGER.warn(String.format("Exception %s was thrown with message: %s", ex.getClass(), ex.getMessage()));
         ApiError apiError = new ApiError("User not found Exception", ex.getMessage(), HttpStatus.NOT_FOUND.value());
         return ResponseEntity.status(apiError.getStatus())
@@ -33,7 +33,7 @@ public class ControllerExceptionHandler {
     }
 
     @ExceptionHandler(value = {PageNotFoundException.class})
-    public ResponseEntity<ApiError> pageNotFoundException(HttpServletRequest req, PageNotFoundException ex) {
+    public ResponseEntity<ApiError> pageNotFoundException(PageNotFoundException ex) {
         LOGGER.warn(String.format("Exception %s was thrown with message: %s", ex.getClass(), ex.getMessage()));
         ApiError apiError = new ApiError("Page not found Exception", ex.getMessage(), HttpStatus.NOT_FOUND.value());
         return ResponseEntity.status(apiError.getStatus())
@@ -41,7 +41,7 @@ public class ControllerExceptionHandler {
     }
 
     @ExceptionHandler(value = {MissingServletRequestParameterException.class})
-    public ResponseEntity<ApiError> missingParamsException(HttpServletRequest req, MissingServletRequestParameterException ex) {
+    public ResponseEntity<ApiError> missingParamsException(MissingServletRequestParameterException ex) {
         LOGGER.warn(String.format("Exception %s was thrown with message: %s", ex.getClass(), ex.getMessage()));
         ApiError apiError = new ApiError("Missing Parameter Exception", ex.getMessage(), HttpStatus.NOT_FOUND.value());
         return ResponseEntity.status(apiError.getStatus())
@@ -49,7 +49,7 @@ public class ControllerExceptionHandler {
     }
 
     @ExceptionHandler(value = {ConstraintViolationException.class})
-    public ResponseEntity<ApiError> constraintViolationException(HttpServletRequest req, ConstraintViolationException ex) {
+    public ResponseEntity<ApiError> constraintViolationException(ConstraintViolationException ex) {
         LOGGER.warn(String.format("Exception %s was thrown with message: %s", ex.getClass(), ex.getMessage()));
         ApiError apiError = new ApiError("Constraint Violation Exception", ex.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY.value());
         return ResponseEntity.status(apiError.getStatus())
@@ -57,7 +57,7 @@ public class ControllerExceptionHandler {
     }
 
     @ExceptionHandler(value = {NumberFormatException.class})
-    public ResponseEntity<ApiError> numberFormatException(HttpServletRequest req, NumberFormatException ex) {
+    public ResponseEntity<ApiError> numberFormatException(NumberFormatException ex) {
         LOGGER.warn(String.format("Exception %s was thrown with message: %s", ex.getClass(), ex.getMessage()));
         ApiError apiError = new ApiError("Number Format Exception", ex.getMessage(), HttpStatus.BAD_REQUEST.value());
         return ResponseEntity.status(apiError.getStatus())
@@ -65,7 +65,7 @@ public class ControllerExceptionHandler {
     }
 
     @ExceptionHandler(value = {EmptyResultDataAccessException.class})
-    public ResponseEntity<ApiError> emptyResultDataException(HttpServletRequest req, EmptyResultDataAccessException ex) {
+    public ResponseEntity<ApiError> emptyResultDataException(EmptyResultDataAccessException ex) {
         LOGGER.warn(String.format("Exception %s was thrown with message: %s", ex.getClass(), ex.getMessage()));
         ApiError apiError = new ApiError("Empty Result Data Exception", ex.getMessage(), HttpStatus.NOT_FOUND.value());
         return ResponseEntity.status(apiError.getStatus())
@@ -73,7 +73,7 @@ public class ControllerExceptionHandler {
     }
 
     @ExceptionHandler(value = {MethodArgumentNotValidException.class})
-    public ResponseEntity<Object> methodArgumentNotValidException(HttpServletRequest req, MethodArgumentNotValidException ex) {
+    public ResponseEntity<Object> methodArgumentNotValidException(MethodArgumentNotValidException ex) {
         LOGGER.warn(String.format("Exception %s was thrown", ex.getClass()));
 
         Map<String, Object> body = new HashMap<>();
@@ -90,6 +90,14 @@ public class ControllerExceptionHandler {
 
         body.put("errors", errors);
         return ResponseEntity.badRequest().body(body);
+    }
+
+    @ExceptionHandler(value = {Exception.class})
+    public ResponseEntity<ApiError> handleUnknownException(HttpMessageNotReadableException ex) {
+        LOGGER.warn(String.format("Exception %s was thrown with message: %s", ex.getClass(), ex.getMessage()));
+        ApiError apiError = new ApiError("Internal Error", ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR.value());
+        return ResponseEntity.status(apiError.getStatus())
+                .body(apiError);
     }
 
 }
