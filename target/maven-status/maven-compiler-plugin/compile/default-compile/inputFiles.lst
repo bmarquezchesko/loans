@@ -1,0 +1,17 @@
+/Users/contingencia/repositoriosGit/loans/src/main/java/com/example/loans/exceptions/UserNotFoundException.java
+/Users/contingencia/repositoriosGit/loans/src/main/java/com/example/loans/repository/UserRepository.java
+/Users/contingencia/repositoriosGit/loans/src/main/java/com/example/loans/LoansApplication.java
+/Users/contingencia/repositoriosGit/loans/src/main/java/com/example/loans/exceptions/ApiError.java
+/Users/contingencia/repositoriosGit/loans/src/main/java/com/example/loans/controller/LoanController.java
+/Users/contingencia/repositoriosGit/loans/src/main/java/com/example/loans/services/LoanService.java
+/Users/contingencia/repositoriosGit/loans/src/main/java/com/example/loans/domain/Loan.java
+/Users/contingencia/repositoriosGit/loans/src/main/java/com/example/loans/services/impl/DefaultLoanService.java
+/Users/contingencia/repositoriosGit/loans/src/main/java/com/example/loans/config/ControllerExceptionHandler.java
+/Users/contingencia/repositoriosGit/loans/src/main/java/com/example/loans/repository/LoanRepository.java
+/Users/contingencia/repositoriosGit/loans/src/main/java/com/example/loans/services/UserService.java
+/Users/contingencia/repositoriosGit/loans/src/main/java/com/example/loans/domain/User.java
+/Users/contingencia/repositoriosGit/loans/src/main/java/com/example/loans/controller/UserController.java
+/Users/contingencia/repositoriosGit/loans/src/main/java/com/example/loans/response/LoansResponse.java
+/Users/contingencia/repositoriosGit/loans/src/main/java/com/example/loans/response/Paging.java
+/Users/contingencia/repositoriosGit/loans/src/main/java/com/example/loans/exceptions/PageNotFoundException.java
+/Users/contingencia/repositoriosGit/loans/src/main/java/com/example/loans/services/impl/DefaultUserService.java

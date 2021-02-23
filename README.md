@@ -1,12 +1,11 @@
-# API Loans
+# API Loans - Spring Boot 
 ![technology Java](https://img.shields.io/badge/technology-java-blue.svg)
 ![tag jdk8](https://img.shields.io/badge/tag-jdk8-orange.svg)
 
 API Loans expone servicios para consultar, crear y borrar usuarios. 
 Además, hay usuarios preexistentes almacenados que pueden contar con prestamos asociados.
 
-## Spring Boot APP for JAVA 8
-Pre-requisitos:
+## Pre-requisitos:
 
     Maven
     Java JDK 1.8
@@ -15,6 +14,17 @@ Pre-requisitos:
 Luego de clonar el repositorio desde Github, sitúese en el directorio root del proyecto 
 y ejecute el siguiente comando desde la consola `mvn clean install` para poder buildear el proyecto y descargar todas sus dependencias.
 A continuación, puede ejecutar la aplicación con el comando `mvn spring-boot:run` y disfrute ;)
+
+La aplicación ejecutará en el puerto `8080` de `localhost`.
+
+Una vez que la aplicación este corriendo podra visualizar los usuarios almacenados 
+(los pre-existentes y los que se creen) en una base de datos que ejecuta en memoria (Database **H2**).
+Para consultar los elementos en la BD puede ingresar desde el navegador a `http://localhost:8080/h2-console` 
+e ingresar con las siguientes credenciales y realizar las consultas necesarias:
+```
+User Name: sa 
+Password: password
+```
 
 ## Uso de la API
 
@@ -121,11 +131,85 @@ y la cantidad de resultados a mostrar por página:
 
 `GET` http://<i></i>localhost:8080/loans?**page**=1&**size**=5
 
-Opcional: Búsqueda páginada de los prestamos filtrando por id de usuario (**user_id**):
+#### Success Response
+**Status**: `200 OK`
+```json
+{
+    "items": [
+        {
+            "id": 1,
+            "total": 2500,
+            "userId": 3
+        },
+        {
+            "id": 2,
+            "total": 1500,
+            "userId": 3
+        },
+        {
+            "id": 3,
+            "total": 1000,
+            "userId": 1
+        },
+        {
+            "id": 4,
+            "total": 3000,
+            "userId": 1
+        },
+        {
+            "id": 5,
+            "total": 5000,
+            "userId": 1
+        }
+    ],
+    "paging": {
+        "page": 1,
+        "size": 5,
+        "total": 14
+    }
+}
+```
+
+**Opcional**: Búsqueda páginada de los prestamos filtrando por id de usuario (**user_id**):
 
 `GET` http://<i></i>localhost:8080/loans?**page**=1&**size**=5&**user_id**=3
 
+#### Success Response
+**Status**: `200 OK`
+```json
+{
+    "items": [
+        {
+            "id": 13,
+            "total": 700,
+            "userId": 3
+        },
+        {
+            "id": 14,
+            "total": 1000,
+            "userId": 3
+        }
+    ],
+    "paging": {
+        "page": 1,
+        "size": 5,
+        "total": 2
+    }
+}
+```
 
+#### Error Response Format
+**Status**: `400 Bad Request`
+```json
+{
+    "error": "Missing Parameter Exception",
+    "message": "Required Integer parameter 'page' is not present",
+    "status": 400
+}
+```
+
+## Preguntas
+* [braianmarquez89@gmail.com](mailto:braianmarquez89@gmail.com)
 
 
 

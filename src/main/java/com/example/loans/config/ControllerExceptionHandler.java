@@ -43,7 +43,7 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(value = {MissingServletRequestParameterException.class})
     public ResponseEntity<ApiError> missingParamsException(MissingServletRequestParameterException ex) {
         LOGGER.warn(String.format("Exception %s was thrown with message: %s", ex.getClass(), ex.getMessage()));
-        ApiError apiError = new ApiError("Missing Parameter Exception", ex.getMessage(), HttpStatus.NOT_FOUND.value());
+        ApiError apiError = new ApiError("Missing Parameter Exception", ex.getMessage(), HttpStatus.BAD_REQUEST.value());
         return ResponseEntity.status(apiError.getStatus())
                 .body(apiError);
     }
