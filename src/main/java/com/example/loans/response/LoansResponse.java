@@ -29,4 +29,12 @@ public class LoansResponse {
     public void setPaging(Paging paging) {
         this.paging = paging;
     }
+
+    @Override
+    public String toString() {
+        return "LoansResponse{" +
+                "items=" + items +
+                ", paging=" + paging +
+                '}';
+    }
 }

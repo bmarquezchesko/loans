@@ -35,4 +35,13 @@ public class Paging {
     public void setTotal(Long total) {
         this.total = total;
     }
+
+    @Override
+    public String toString() {
+        return "Paging{" +
+                "page=" + page +
+                ", size=" + size +
+                ", total=" + total +
+                '}';
+    }
 }

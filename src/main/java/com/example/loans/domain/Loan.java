@@ -66,7 +66,7 @@ public class Loan {
         return "Loan{" +
                 "id=" + id +
                 ", total=" + total +
-                ", user=" + user +
+                ", userId=" + user.getId() +
                 '}';
     }
 }
