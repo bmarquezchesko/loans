@@ -25,8 +25,9 @@ e ingresar con las siguientes credenciales y realizar las consultas necesarias:
 User Name: sa 
 Password: password
 ```
+## Diagrama Base de Datos
 
-![Schema Database](https://github.com/bmarquezchesko/loans/blob/main/src/main/resources/files/H2%20DB.png)
+![Database Schema](https://github.com/bmarquezchesko/loans/blob/main/src/main/resources/files/H2%20DB.png)
 
 ## Uso de la API
 
