@@ -8,6 +8,7 @@ import com.example.loans.response.LoansResponse;
 import com.example.loans.response.Paging;
 import com.example.loans.services.LoanService;
 import com.example.loans.services.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,13 +16,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class DefaultLoanService implements LoanService {
 
     @Autowired
-    LoanRepository loanRepository;
+    private final LoanRepository loanRepository;
 
     @Autowired
-    UserService userService;
+    private final UserService userService;
 
     public LoansResponse getAllLoans(Integer size, Integer page) {
         Pageable pageable = buildPageableWithPreviousIndexPage(page, size);

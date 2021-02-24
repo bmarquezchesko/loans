@@ -1,6 +1,8 @@
 package com.example.loans.domain;
 
 import com.fasterxml.jackson.annotation.*;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -9,6 +11,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "loans")
+@NoArgsConstructor
 public class Loan {
 
     @Id
@@ -23,6 +26,12 @@ public class Loan {
     @JsonIdentityReference(alwaysAsId = true)
     @JsonProperty("userId")
     private User user;
+
+    public Loan(Long id, Long total, User user) {
+        this.id = id;
+        this.total = total;
+        this.user = user;
+    }
 
     public Long getId() {
         return id;

@@ -214,9 +214,3 @@ y la cantidad de resultados a mostrar por página:
 ## Preguntas
 * [braianmarquez89@gmail.com](mailto:braianmarquez89@gmail.com)
 
-
-
-
-
-
-
