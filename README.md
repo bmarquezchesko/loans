@@ -29,7 +29,7 @@ Password: password
 Los usuarios pre-cargados con sus préstamos asociados estan almacenados en la BD por el siguiente archivo sql:
 [Inicialización Base Datos](https://github.com/bmarquezchesko/loans/blob/main/src/main/resources/data.sql).
 
-**IMPORTANT:** Una vez que se detiene y se vuelve a ejecutar la aplicación los elementos almacenados en la base de datos se pierden,
+**IMPORTANT:** Una vez que se detiene y se vuelve a ejecutar la aplicación los elementos almacenados en la base de datos se pierden
 (salvo los pre-existentes), ya que se encuentran almacenados en una BD que ejecuta en memoria (**H2**).
 
 ## Diagrama Base de Datos
