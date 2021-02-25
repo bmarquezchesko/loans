@@ -1,8 +1,10 @@
 package com.example.loans.domain;
 
 import com.fasterxml.jackson.annotation.*;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -11,6 +13,9 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "loans")
+@Accessors(chain = true)
+@Getter
+@Setter
 @NoArgsConstructor
 public class Loan {
 
@@ -30,30 +35,6 @@ public class Loan {
     public Loan(Long id, Long total, User user) {
         this.id = id;
         this.total = total;
-        this.user = user;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getTotal() {
-        return total;
-    }
-
-    public void setTotal(Long total) {
-        this.total = total;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
         this.user = user;
     }
 

@@ -1,5 +1,9 @@
 package com.example.loans.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.Collections;
@@ -8,6 +12,9 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "users")
+@Getter
+@Setter
+@Accessors(chain = true)
 public class User {
 
     @Id
@@ -25,45 +32,6 @@ public class User {
             mappedBy = "user")
     private List<Loan> loans = Collections.emptyList();
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public List<Loan> getLoans() {
-        return loans;
-    }
-
-    public void setLoans(List<Loan> loans) {
-        this.loans = loans;
-    }
 
     @Override
     public boolean equals(Object o) {

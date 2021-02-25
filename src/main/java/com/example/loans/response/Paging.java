@@ -1,5 +1,14 @@
 package com.example.loans.response;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+
+@Getter
+@Setter
+@Accessors(chain = true)
+@NoArgsConstructor
 public class Paging {
 
     private Integer page;
@@ -9,30 +18,6 @@ public class Paging {
     public Paging(Integer page, Integer size, Long total) {
         this.page = page;
         this.size = size;
-        this.total = total;
-    }
-
-    public Integer getPage() {
-        return page;
-    }
-
-    public void setPage(Integer page) {
-        this.page = page;
-    }
-
-    public Integer getSize() {
-        return size;
-    }
-
-    public void setSize(Integer size) {
-        this.size = size;
-    }
-
-    public Long getTotal() {
-        return total;
-    }
-
-    public void setTotal(Long total) {
         this.total = total;
     }
 

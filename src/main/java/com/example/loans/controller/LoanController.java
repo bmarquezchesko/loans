@@ -1,6 +1,5 @@
 package com.example.loans.controller;
 
-import com.example.loans.config.ControllerExceptionHandler;
 import com.example.loans.response.LoansResponse;
 import com.example.loans.services.LoanService;
 import org.slf4j.Logger;

@@ -13,6 +13,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import javax.validation.ConstraintViolationException;
 import java.util.HashMap;
@@ -68,6 +69,14 @@ public class ControllerExceptionHandler {
     public ResponseEntity<ApiError> emptyResultDataException(EmptyResultDataAccessException ex) {
         LOGGER.warn(String.format("Exception %s was thrown with message: %s", ex.getClass(), ex.getMessage()));
         ApiError apiError = new ApiError("Empty Result Data Exception", ex.getMessage(), HttpStatus.NOT_FOUND.value());
+        return ResponseEntity.status(apiError.getStatus())
+                .body(apiError);
+    }
+
+    @ExceptionHandler(value = {MethodArgumentTypeMismatchException.class})
+    public ResponseEntity<ApiError> methodArgumentTypeMismatchException(MethodArgumentTypeMismatchException ex) {
+        LOGGER.warn(String.format("Exception %s was thrown with message: %s", ex.getClass(), ex.getMessage()));
+        ApiError apiError = new ApiError("Argument Type Mismatch Exception", ex.getMessage(), HttpStatus.BAD_REQUEST.value());
         return ResponseEntity.status(apiError.getStatus())
                 .body(apiError);
     }
