@@ -25,6 +25,13 @@ e ingresar con las siguientes credenciales y realizar las consultas necesarias:
 User Name: sa 
 Password: password
 ```
+
+Los usuarios pre-cargados con sus préstamos asociados estan almacenados en la BD por el siguiente archivo sql:
+[Inicialización Base Datos](https://github.com/bmarquezchesko/loans/blob/main/src/main/resources/data.sql).
+
+**IMPORTANT:** Una vez que se detiene y se vuelve a ejecutar la aplicación los elementos almacenados en la base de datos se pierden,
+(salvo los pre-existentes), ya que se encuentran almacenados en una BD que ejecuta en memoria (**H2**).
+
 ## Diagrama Base de Datos
 
 ![Database Schema](https://github.com/bmarquezchesko/loans/blob/main/src/main/resources/files/H2%20DB.png)
