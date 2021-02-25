@@ -1,6 +1,7 @@
 package com.example.loans.services.impl;
 
 import com.example.loans.domain.User;
+import com.example.loans.exceptions.LoansCreationForbiddenException;
 import com.example.loans.exceptions.UserNotFoundException;
 import com.example.loans.repository.UserRepository;
 import com.example.loans.services.UserService;
@@ -20,8 +21,9 @@ public class DefaultUserService implements UserService {
     }
 
     public User createUser(User user){
-
-        //TODO: Validar si es un usuario ya existente en la BD y restringir la creación de LOANS
+        if (!user.getLoans().isEmpty()){
+            throw new LoansCreationForbiddenException("Loans creation is forbidden, only pre-existing users have loans");
+        }
         return userRepository.save(user);
     }
 

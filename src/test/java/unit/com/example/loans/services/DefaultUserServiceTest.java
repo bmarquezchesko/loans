@@ -1,6 +1,8 @@
 package unit.com.example.loans.services;
 
+import com.example.loans.domain.Loan;
 import com.example.loans.domain.User;
+import com.example.loans.exceptions.LoansCreationForbiddenException;
 import com.example.loans.exceptions.UserNotFoundException;
 import com.example.loans.repository.UserRepository;
 import com.example.loans.services.UserService;
@@ -10,6 +12,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import org.springframework.dao.EmptyResultDataAccessException;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -50,7 +53,7 @@ public class DefaultUserServiceTest {
     }
 
     @Test
-    public void testSaveUserThenReturnSameUser() {
+    public void testCreateUserThenReturnSameUser() {
         User expectedUser = buildNewUser();
 
         Mockito.when(userRepository.save(Mockito.any(User.class))).thenReturn(expectedUser);
@@ -58,6 +61,14 @@ public class DefaultUserServiceTest {
         User response = userService.createUser(expectedUser);
 
         assertEquals(expectedUser, response);
+    }
+
+    @Test
+    public void testCreateUserThenThrownCreationLoansException() {
+        User expectedUser = buildNewUser().setLoans(Arrays.asList(new Loan().setId(1L).setTotal(1000L)));
+
+        Throwable ex = assertThrows(LoansCreationForbiddenException.class, () -> {userService.createUser(expectedUser);});
+        assertEquals("Loans creation is forbidden, only pre-existing users have loans", ex.getMessage());
     }
 
     @Test

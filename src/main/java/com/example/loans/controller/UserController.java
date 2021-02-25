@@ -32,7 +32,8 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> createUser(@Valid @RequestBody User user){
-        LOGGER.info(String.format("### POST request to create a user - Endpoint /users was invoked with request body: %s ###", user));
+        LOGGER.info(String.format("### POST request to create a user - Endpoint /users was invoked with request body - firstName: %s, lastName: %s, email: %s ###",
+                user.getFirstName(), user.getLastName(),user.getEmail()));
 
         User response = userService.createUser(user);
 

@@ -2,10 +2,10 @@ package com.example.loans.controller;
 
 import com.example.loans.domain.Loan;
 import com.example.loans.domain.User;
+import com.example.loans.exceptions.PageNotFoundException;
 import com.example.loans.response.LoansResponse;
 import com.example.loans.response.Paging;
 import com.example.loans.services.LoanService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +28,6 @@ public class LoanControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
-
-    @Autowired
-    private ObjectMapper objectMapper;
 
     @MockBean
     private LoanService loanService;
@@ -85,7 +82,7 @@ public class LoanControllerTest {
     }
 
     @Test
-    void testGetLoansWhenNotExistObligatoryPageParamThenReturns400() throws Exception {
+    void testGetLoansFailsWhenNotExistObligatoryPageParamThenReturns400() throws Exception {
 
         mockMvc.perform(get("/loans")
                 .contentType("application/json")
@@ -98,7 +95,7 @@ public class LoanControllerTest {
     }
 
     @Test
-    void testGetLoansWhenPageParamIsLessThanOneThenReturns422() throws Exception {
+    void testGetLoansFailsWhenPageParamIsLessThanOneThenReturns422() throws Exception {
 
         mockMvc.perform(get("/loans")
                 .contentType("application/json")
@@ -112,7 +109,25 @@ public class LoanControllerTest {
     }
 
     @Test
-    void testGetLoansWhenSizeParamIsStringThenReturns400() throws Exception {
+    void testGetLoansFailsWhenPageNotFoundThenReturns404() throws Exception {
+
+        PageNotFoundException expectedException = new PageNotFoundException("Number page not exists, max page is 1");
+
+        doThrow(expectedException).when(loanService).getAllLoans(5, 3);
+
+        mockMvc.perform(get("/loans")
+                .contentType("application/json")
+                .param("size", "5")
+                .param("page", "3"))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.error").value("Page not found Exception"))
+                .andExpect(jsonPath("$.message").value(expectedException.getMessage()))
+                .andExpect(jsonPath("$.status").value("404"))
+        ;
+    }
+
+    @Test
+    void testGetLoansFailsWhenSizeParamIsStringThenReturns400() throws Exception {
 
         mockMvc.perform(get("/loans")
                 .contentType("application/json")

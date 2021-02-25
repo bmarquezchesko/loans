@@ -1,6 +1,7 @@
 package com.example.loans.config;
 
 import com.example.loans.exceptions.ApiError;
+import com.example.loans.exceptions.LoansCreationForbiddenException;
 import com.example.loans.exceptions.PageNotFoundException;
 import com.example.loans.exceptions.UserNotFoundException;
 import org.slf4j.Logger;
@@ -77,6 +78,14 @@ public class ControllerExceptionHandler {
     public ResponseEntity<ApiError> methodArgumentTypeMismatchException(MethodArgumentTypeMismatchException ex) {
         LOGGER.warn(String.format("Exception %s was thrown with message: %s", ex.getClass(), ex.getMessage()));
         ApiError apiError = new ApiError("Argument Type Mismatch Exception", ex.getMessage(), HttpStatus.BAD_REQUEST.value());
+        return ResponseEntity.status(apiError.getStatus())
+                .body(apiError);
+    }
+
+    @ExceptionHandler(value = {LoansCreationForbiddenException.class})
+    public ResponseEntity<ApiError> loansCreationForbiddenException(LoansCreationForbiddenException ex) {
+        LOGGER.warn(String.format("Exception %s was thrown with message: %s", ex.getClass(), ex.getMessage()));
+        ApiError apiError = new ApiError("Loans Creation Forbidden Exception", ex.getMessage(), HttpStatus.FORBIDDEN.value());
         return ResponseEntity.status(apiError.getStatus())
                 .body(apiError);
     }

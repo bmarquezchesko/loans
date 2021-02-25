@@ -32,7 +32,6 @@ public class User {
             mappedBy = "user")
     private List<Loan> loans = Collections.emptyList();
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
